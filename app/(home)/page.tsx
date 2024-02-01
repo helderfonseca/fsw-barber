@@ -6,6 +6,7 @@ import BookingItem from "../_components/booking-item";
 import { db } from "../_lib/prisma";
 import BarbershopItem from "./_components/barbershop";
 import { Key } from "react";
+import Footer from "../_components/footer";
 
 export default async function Home() {
   const barbershops = await db.barbershop.findMany({});
@@ -43,6 +44,17 @@ export default async function Home() {
               ))}
           </div>
       </div>
+
+      <div className="mt-9">
+          <h3 className="text-xs px-5 mb-3 uppercase text-gray-500 font-bold">Populares</h3>
+          
+          <div className="flex gap-4 px-5 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+              {barbershops.map((barbershop: { id: any; }) => (
+                <BarbershopItem key={barbershop.id} barbershop={barbershop} />
+              ))}
+          </div>
+      </div>
+      
     </div>
 
   );
