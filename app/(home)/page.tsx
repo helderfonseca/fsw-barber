@@ -7,6 +7,7 @@ import { db } from "../_lib/prisma";
 import BarbershopItem from "./_components/barbershop";
 import { Key } from "react";
 import Footer from "../_components/footer";
+import { Barbershop } from "@prisma/client";
 
 export default async function Home() {
   const barbershops = await db.barbershop.findMany({});
@@ -39,7 +40,7 @@ export default async function Home() {
           <h3 className="text-xs px-5 mb-3 uppercase text-gray-500 font-bold">Recomendados</h3>
           
           <div className="flex gap-4 px-5 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-              {barbershops.map((barbershop: { id: any; }) => (
+              {barbershops.map((barbershop: Barbershop) => (
                 <BarbershopItem key={barbershop.id} barbershop={barbershop} />
               ))}
           </div>
@@ -49,7 +50,7 @@ export default async function Home() {
           <h3 className="text-xs px-5 mb-3 uppercase text-gray-500 font-bold">Populares</h3>
           
           <div className="flex gap-4 px-5 overflow-x-auto [&::-webkit-scrollbar]:hidden">
-              {barbershops.map((barbershop: { id: any; }) => (
+              {barbershops.map((barbershop: Barbershop) => (
                 <BarbershopItem key={barbershop.id} barbershop={barbershop} />
               ))}
           </div>

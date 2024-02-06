@@ -6,8 +6,7 @@ import { Adapter } from "next-auth/adapters";
 
 const prisma = new PrismaClient();
 
-export default NextAuth({
-  // Configure one or more authentication providers
+const handler = NextAuth({
   adapter: PrismaAdapter(prisma) as Adapter,
   providers: [
     GoogleProvider({
@@ -16,3 +15,5 @@ export default NextAuth({
     }),
   ],
 })
+
+export { handler as GET, handler as POST }
