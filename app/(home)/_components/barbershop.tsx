@@ -24,6 +24,7 @@ const BarbershopItem = ({ barbershop }: BarberShopItemProps) => {
               src={barbershop.imageUrl}
               alt={barbershop.name}
               fill
+              sizes="100vw"
               style={{
                 objectFit: "cover"
               }}
