@@ -1,3 +1,4 @@
+"use client";
 import { CalendarDaysIcon, HomeIcon, LogInIcon, LogOutIcon, UserIcon } from "lucide-react"
 import { Avatar, AvatarImage } from "./ui/avatar"
 import { Button } from "./ui/button"
@@ -7,8 +8,8 @@ import { signIn, signOut, useSession } from "next-auth/react"
 
 const SideMenu = () => {
 
-  const handleCLickLogin = async () => {
-    await signIn('google');
+  const handleCLickLogin = () => {
+    signIn('google');
   }
 
   const { data } = useSession();
@@ -19,8 +20,8 @@ const SideMenu = () => {
         <SheetTitle className="text-2xl font-bold">Menu</SheetTitle>
       </SheetHeader>
         {data?.user ? (
-            <div className="flex justify-between items-center">
-              <div className="flex items-center gap-3 px-5 py-6">
+            <div className="flex justify-between items-center px-5 py-6">
+              <div className="flex items-center gap-3">
                 <Avatar>
                   <AvatarImage src={data.user?.image ?? ""} />
                 </Avatar>
@@ -40,8 +41,8 @@ const SideMenu = () => {
                 <h2 className="font-bold">Olá, faça seu login</h2>
               </div>
 
-              <Button variant="secondary" size="icon" className="w-full justify-start px-3">
-                <LogInIcon onClick={handleCLickLogin} className="mr-3" size={18} />
+              <Button variant="secondary" size="icon" onClick={handleCLickLogin} className="w-full justify-start px-3">
+                <LogInIcon className="mr-3" size={18} />
                 Fazer Login
               </Button>
             </div>
